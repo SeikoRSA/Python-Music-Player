@@ -11,7 +11,7 @@ pygame.mixer.init()
 window = tk.Tk()
 window.title("Reveal Music Player")
 window.geometry("600x600")
-window.configure(bg="#6F97BA")
+window.configure(bg="#4f6c85")
 window.iconbitmap("playerLogo.ico")
 
 # Function to open the music folder
@@ -48,7 +48,7 @@ def play_music():
 
 def rewind_music():
     current_time = pygame.mixer.music.get_pos() // 1000  # Get current time in seconds
-    new_time = max(0, current_time - 5)  # Rewind by 5 seconds, ensuring it doesn't go negative
+    new_time = current_time - 2  # Rewind by 5 seconds, ensuring it doesn't go negative
     pygame.mixer.music.rewind()
     pygame.mixer.music.play(start=new_time)
 
@@ -62,10 +62,18 @@ def stop_music():
 
 def set_volume(value):
     pygame.mixer.music.set_volume(float(value) / 100)
+
+def on_enter(event):
+    volume_slider.config(bg="#3b5164")
+    volume_slider.config(foreground="white")
+
+def on_leave(event):
+    volume_slider.config(bg="#3b5164")
+
 # Buttons and Listbox
 
 #Button Frame
-buttonFrame = tk.Frame(window, bg="#6F97BA")
+buttonFrame = tk.Frame(window, bg="#4f6c85")
 buttonFrame.pack(side = tk.TOP)
 
 #My main buttons
@@ -82,26 +90,30 @@ stop.pack(side = tk.LEFT, padx=10)
 
 pauseImage = tk.PhotoImage(file="Pause.png")
 pause = tk.Button(buttonFrame, text="Pause", command = pause_music, image=pauseImage)
-pause.pack(side = tk.LEFT, padx=10)
+pause.pack(side = tk.LEFT, padx=10, pady=20)
 
-songFrame = tk.Frame(window, bg="Red")
+songFrame = tk.Frame(window, bg="#3b5164")
 songFrame.pack()
-songList = tk.Listbox(songFrame, background="blue", height=15, width=50, fg="white", font=("Arial", 10))
-songList.pack(padx=50, pady=50)
+songList = tk.Listbox(songFrame, background="blue", height=15, width=50,bg="#2c3c4a", fg="white", font=("Arial", 10))
+songList.pack(padx=50,pady=20, side=tk.TOP)
 
-seekFrame = tk.Frame(window)
-seekFrame.pack(side = tk.BOTTOM, pady=40)
+seekFrame = tk.Frame(window, background="#3b5164")
+seekFrame.pack(pady=20)
 
 rewindImage = tk.PhotoImage(file="REWIND.png")
 rewind = tk.Button(seekFrame, text="Rewind 5s", command=rewind_music, image=rewindImage)
-rewind.pack(side=tk.LEFT)
+rewind.pack(side=tk.LEFT, padx=10)
 
 forwardImage = tk.PhotoImage(file="Forward.png")
 forward = tk.Button(seekFrame, text="Forward 5s", command=forward_music, image=forwardImage)
 forward.pack(side=tk.LEFT)
 
-volume_slider = tk.Scale(songFrame, from_=0, to=100, orient="vertical", command=set_volume)
+volume_slider = tk.Scale(seekFrame, from_=100, to=0, orient="vertical", command=set_volume, bg="#3b5164", highlightthickness=0, troughcolor="#768fa5")
 volume_slider.set(50)  # Set the initial volume to 50%
+
+volume_slider.bind("<Enter>", on_enter)
+volume_slider.bind("<Leave>", on_leave)
+
 volume_slider.pack(side=tk.RIGHT)
 
 # Start the GUI event loop
