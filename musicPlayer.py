@@ -12,7 +12,7 @@ window = tk.Tk()
 window.title("Reveal Music Player")
 window.geometry("600x600")
 window.configure(bg="#4f6c85")
-window.iconbitmap("playerLogo.ico")
+window.iconbitmap("Python-Music-Player-main\playerLogo.ico")
 
 # Function to open the music folder
 def openMusicFolder():
@@ -80,15 +80,15 @@ buttonFrame.pack(side = tk.TOP)
 findButton = tk.Button(buttonFrame, text="Find Music", command=openMusicFolder)
 findButton.pack(side = tk.TOP, pady=20)
 
-playImage = tk.PhotoImage(file="Play.png")
+playImage = tk.PhotoImage(file="Python-Music-Player-main\Play.png")
 play = tk.Button(buttonFrame, text="Play", command=play_music, image=playImage)
 play.pack(side = tk.LEFT, padx=10)
 
-stopImage = tk.PhotoImage(file="Stop.png")
+stopImage = tk.PhotoImage(file="Python-Music-Player-main\Stop.png")
 stop = tk.Button(buttonFrame, text = "Stop", command = stop_music, image=stopImage)
 stop.pack(side = tk.LEFT, padx=10)
 
-pauseImage = tk.PhotoImage(file="Pause.png")
+pauseImage = tk.PhotoImage(file="Python-Music-Player-main\Pause.png")
 pause = tk.Button(buttonFrame, text="Pause", command = pause_music, image=pauseImage)
 pause.pack(side = tk.LEFT, padx=10, pady=20)
 
@@ -100,11 +100,11 @@ songList.pack(padx=50,pady=20, side=tk.TOP)
 seekFrame = tk.Frame(window, background="#3b5164")
 seekFrame.pack(pady=20)
 
-rewindImage = tk.PhotoImage(file="REWIND.png")
+rewindImage = tk.PhotoImage(file="Python-Music-Player-main\REWIND.png")
 rewind = tk.Button(seekFrame, text="Rewind 5s", command=rewind_music, image=rewindImage)
 rewind.pack(side=tk.LEFT, padx=10)
 
-forwardImage = tk.PhotoImage(file="Forward.png")
+forwardImage = tk.PhotoImage(file="Python-Music-Player-main\Forward.png")
 forward = tk.Button(seekFrame, text="Forward 5s", command=forward_music, image=forwardImage)
 forward.pack(side=tk.LEFT)
 
