@@ -12,7 +12,7 @@ window = tk.Tk()
 window.title("Reveal Music Player")
 window.geometry("600x600")
 window.configure(bg="#4f6c85")
-window.iconbitmap("Python-Music-Player-main\playerLogo.ico")
+window.iconbitmap("playerLogo.ico")
 
 # Function to open the music folder
 def openMusicFolder():
@@ -70,6 +70,22 @@ def on_enter(event):
 def on_leave(event):
     volume_slider.config(bg="#3b5164")
 
+def seek_music(value):
+
+    #Capture the song itself
+    sound = pygame.mixer.Sound(songList.get(tk.ACTIVE))
+    #How long that song is
+    duration = sound.get_length()
+
+    #The scale bar has values from 0 to 100, then convert's them to integer.
+    scalePosition = int(value)
+
+    newPosition = (scalePosition/100)*duration
+    pygame.mixer.music.set_pos(newPosition)
+
+    print(f"The duration of the sound is: {duration:.2f} seconds")
+    print(f"Current scale bar position: {scalePosition}")
+
 # Buttons and Listbox
 
 #Button Frame
@@ -77,18 +93,18 @@ buttonFrame = tk.Frame(window, bg="#4f6c85")
 buttonFrame.pack(side = tk.TOP)
 
 #My main buttons
-findButton = tk.Button(buttonFrame, text="Find Music", command=openMusicFolder)
+findButton = tk.Button(buttonFrame,font=("Helvetica",15), text="Find Music", command=openMusicFolder, bg="#2e4151", fg="#acb6bf")
 findButton.pack(side = tk.TOP, pady=20)
 
-playImage = tk.PhotoImage(file="Python-Music-Player-main\Play.png")
+playImage = tk.PhotoImage(file="Play.png")
 play = tk.Button(buttonFrame, text="Play", command=play_music, image=playImage)
 play.pack(side = tk.LEFT, padx=10)
 
-stopImage = tk.PhotoImage(file="Python-Music-Player-main\Stop.png")
+stopImage = tk.PhotoImage(file="Stop.png")
 stop = tk.Button(buttonFrame, text = "Stop", command = stop_music, image=stopImage)
 stop.pack(side = tk.LEFT, padx=10)
 
-pauseImage = tk.PhotoImage(file="Python-Music-Player-main\Pause.png")
+pauseImage = tk.PhotoImage(file="Pause.png")
 pause = tk.Button(buttonFrame, text="Pause", command = pause_music, image=pauseImage)
 pause.pack(side = tk.LEFT, padx=10, pady=20)
 
@@ -97,14 +113,18 @@ songFrame.pack()
 songList = tk.Listbox(songFrame, background="blue", height=15, width=50,bg="#2c3c4a", fg="white", font=("Arial", 10))
 songList.pack(padx=50,pady=20, side=tk.TOP)
 
+#This is a seek component
+musicScroll = tk.Scale(songFrame, from_=0,to=100, orient=tk.HORIZONTAL, command=seek_music, length=400, bg="#3b5164", troughcolor="#2e4151", highlightthickness=0)
+musicScroll.pack(pady=5)
+
 seekFrame = tk.Frame(window, background="#3b5164")
 seekFrame.pack(pady=20)
 
-rewindImage = tk.PhotoImage(file="Python-Music-Player-main\REWIND.png")
+rewindImage = tk.PhotoImage(file="REWIND.png")
 rewind = tk.Button(seekFrame, text="Rewind 5s", command=rewind_music, image=rewindImage)
 rewind.pack(side=tk.LEFT, padx=10)
 
-forwardImage = tk.PhotoImage(file="Python-Music-Player-main\Forward.png")
+forwardImage = tk.PhotoImage(file="Forward.png")
 forward = tk.Button(seekFrame, text="Forward 5s", command=forward_music, image=forwardImage)
 forward.pack(side=tk.LEFT)
 
