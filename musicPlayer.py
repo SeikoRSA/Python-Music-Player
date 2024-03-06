@@ -12,7 +12,7 @@ window = tk.Tk()
 window.title("Reveal Music Player")
 window.geometry("600x600")
 window.configure(bg="#4f6c85")
-window.iconbitmap("C:/Users/katle/OneDrive/Desktop/Code/reveal-music-player/images/playerLogo.ico")
+window.iconbitmap("images\playerLogo.ico")
 
 # Function to open the music folder and filter out non mp3 and wav files.
 def openMusicFolder():
@@ -105,15 +105,15 @@ findButton = tk.Button(buttonFrame,font=("Helvetica",15), text="Find Music", com
 findButton.pack(side = tk.TOP, pady=20)
 
 #Creating Images for the buttons
-playImage = tk.PhotoImage(file="C:/Users/katle/OneDrive/Desktop/Code/reveal-music-player/images/Play.png")
+playImage = tk.PhotoImage(file="images\Play.png")
 play = tk.Button(buttonFrame, text="Play", command=play_music, image=playImage)
 play.pack(side = tk.LEFT, padx=10)
 
-stopImage = tk.PhotoImage(file="C:/Users/katle/OneDrive/Desktop/Code/reveal-music-player/images/Stop.png")
+stopImage = tk.PhotoImage(file="images\Stop.png")
 stop = tk.Button(buttonFrame, text = "Stop", command = stop_music, image=stopImage)
 stop.pack(side = tk.LEFT, padx=10)
 
-pauseImage = tk.PhotoImage(file="C:/Users/katle/OneDrive/Desktop/Code/reveal-music-player/images/Pause.png")
+pauseImage = tk.PhotoImage(file="images\Pause.png")
 pause = tk.Button(buttonFrame, text="Pause", command = pause_music, image=pauseImage)
 pause.pack(side = tk.LEFT, padx=10, pady=20)
 
@@ -132,11 +132,11 @@ seekFrame = tk.Frame(window, background="#3b5164")
 seekFrame.pack(pady=20)
 
 #Creating Images for the buttons
-rewindImage = tk.PhotoImage(file="C:/Users/katle/OneDrive/Desktop/Code/reveal-music-player/images/REWIND.png")
+rewindImage = tk.PhotoImage(file="images\REWIND.png")
 rewind = tk.Button(seekFrame, text="Rewind 5s", command=rewind_music, image=rewindImage)
 rewind.pack(side=tk.LEFT, padx=10)
 
-forwardImage = tk.PhotoImage(file="C:/Users/katle/OneDrive/Desktop/Code/reveal-music-player/images/Forward.png")
+forwardImage = tk.PhotoImage(file="images\Forward.png")
 forward = tk.Button(seekFrame, text="Forward 5s", command=forward_music, image=forwardImage)
 forward.pack(side=tk.LEFT)
 
